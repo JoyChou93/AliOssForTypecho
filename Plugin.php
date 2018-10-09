@@ -218,9 +218,10 @@ class AliOssForTypecho_Plugin implements Typecho_Plugin_Interface
         date_default_timezone_set('PRC');
 
         $file_origin_name = self::getSafeName($file['name']);
-        $file_id = substr(time(), 5) . sprintf('%u', crc32(uniqid()));
+        $file_id = sprintf('%u', crc32(uniqid()));
 
-        $relative_path = date('Y/m/d/') . $file_id . '/' . $file_origin_name;
+        //$relative_path = date('Y/m/d/') . $file_id . '/' . $file_origin_name;
+        $relative_path = date('Y/m/') . $file_id . '.' . $ext;
         $object_name = $userDir . $relative_path;
 
         if (isset($file['tmp_name'])) {
